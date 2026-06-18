@@ -1,0 +1,31 @@
+<input id="amount" placeholder="Amount" />
+<input id="phone" placeholder="Phone" />
+
+<button onclick="pay()">Pay Now</button>
+<script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
+<script>
+  async function pay() {
+    const res = await fetch("http://localhost:5000/api/payment/create", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        orderId: "ORD_" + Date.now(),
+        amount: document.getElementById("amount").value,
+        phone: document.getElementById("phone").value,
+      }),
+    });
+
+    const data = await res.json();
+
+    console.log("Response:", data);
+
+    const cashfree = Cashfree({
+      mode: "sandbox",
+    });
+
+    cashfree.checkout({
+      paymentSessionId: data.paymentSessionId,
+      redirectTarget: "_self",
+    });
+  }
+</script>
