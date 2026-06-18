@@ -5,7 +5,7 @@
 <script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
 <script>
   async function pay() {
-    const res = await fetch("http://localhost:5000/api/payment/create", {
+    const res = await fetch("https://cashfree-payment-app.onrender.com/api/payment/create", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
