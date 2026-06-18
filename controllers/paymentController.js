@@ -13,7 +13,7 @@ exports.createPayment = async (req, res) => {
         customer_phone: phone,
       },
       order_meta: {
-        return_url: "http://localhost:5000/success.html?order_id={order_id}",
+        return_url: "https://cashfree-payment-app.onrender.com/success.html?order_id={order_id}",
       },
     };
     console.log("Payload:", JSON.stringify(payload, null, 2));
